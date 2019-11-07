@@ -49,7 +49,7 @@ void seccomp_rules_add(enum src_type_t src_type) {
         seccomp_rule_add(ctx, SCMP_ACT_ALLOW, strict_rules[i], 0);
     for (int i = 0; i < (int) (sizeof(extra_rules) / sizeof(*extra_rules)); i++)
         seccomp_rule_add(ctx, SCMP_ACT_ALLOW, extra_rules[i], 0);
-    if (src_type == JAVA_SRC) {
+    if (src_type == SRC_JAVA) {
         for (int i = 0; i < (int) (sizeof(java_rules) / sizeof(*java_rules)); i++)
             seccomp_rule_add(ctx, SCMP_ACT_ALLOW, java_rules[i], 0);
     }

@@ -65,21 +65,21 @@ void do_compile(void *arg) {
     close(fd2);
 
     switch (comp->type) {
-        case C_SRC:
-        case CXX_SRC:
+        case SRC_C:
+        case SRC_CXX:
             c_compile(arg);
             break;
-        case JAVA_SRC:
+        case SRC_JAVA:
             j_compile(arg);
             break;
-        case OTHER_SRC:
+        case SRC_OTHERS:
             break;
     }
 }
 
 void c_compile(void *arg) {
     struct c_comp_t *comp = (struct c_comp_t *) arg;
-    if (comp->src.type == C_SRC)
+    if (comp->src.type == SRC_C)
         execlp(CC, CC, comp->src.file, CC_OUT, comp->bin, NULL);
     else
         execlp(CXX, CXX, comp->src.file, CC_OUT, comp->bin, NULL);
@@ -117,14 +117,14 @@ void do_execute(void *arg) {
 
         seccomp_rules_add(exec->type);
         switch (exec->type) {
-            case C_SRC:
-            case CXX_SRC:
+            case SRC_C:
+            case SRC_CXX:
                 c_execute(arg);
                 break;
-            case JAVA_SRC:
+            case SRC_JAVA:
                 j_execute(arg);
                 break;
-            case OTHER_SRC:
+            case SRC_OTHERS:
                 break;
         }
     }

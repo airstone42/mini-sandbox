@@ -23,10 +23,10 @@ extern const char *JAVA_CP;   /* java -cp / java -classpath */
 
 /* Source code type */
 enum src_type_t {
-    C_SRC = 0,
-    CXX_SRC = 1,
-    JAVA_SRC = 2,
-    OTHER_SRC = 127,
+    SRC_C = 0,
+    SRC_CXX = 1,
+    SRC_JAVA = 2,
+    SRC_OTHERS = 127,
 };
 
 /* Time limit, millisecond */

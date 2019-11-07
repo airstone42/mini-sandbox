@@ -11,6 +11,11 @@ int main(int argc, char *argv[]) {
     struct cli_arg_t cli_arg;
     bzero(&cli_arg, sizeof(cli_arg));
 
+    if (argc == 1) {
+        cli_help();
+        return 0;
+    }
+
     while ((opt = getopt(argc, argv, "hcrpl:f:e:d:i:o:x:")) != -1) {
         switch (opt) {
             case 'h':

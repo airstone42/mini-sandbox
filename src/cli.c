@@ -122,16 +122,25 @@ bool cli_set_io(struct cli_arg_t *arg, char *file, enum cli_io_t flag) {
 }
 
 void cli_help() {
-    printf("-c                compile only\n");
-    printf("-r                execute only\n");
-    printf("-p                compile and run\n");
-    printf("-l lang           set language, c, c++ or java\n");
-    printf("-f source         source code filename\n");
-    printf("-e executable     executable file filename/ java class filename\n");
-    printf("-d directory      java classpath argument\n");
-    printf("-i input          input file redirection\n");
-    printf("-o output         output file redirection\n");
-    printf("-x error          stderr redirection\n");
+    printf("mini-sandbox\n");
+    printf("\n");
+    printf("Usage:\n");
+    printf("    -c                compile only\n");
+    printf("    -r                execute only\n");
+    printf("    -p                compile and run\n");
+    printf("    -l lang           set language, c, c++ or java\n");
+    printf("    -f source         source code filename\n");
+    printf("    -e executable     executable file filename or java class filename\n");
+    printf("    -d directory      java classpath argument\n");
+    printf("    -i input          input file redirection\n");
+    printf("    -o output         output file redirection\n");
+    printf("    -x error          stderr redirection\n");
+    printf("\n");
+    printf("Examples:\n");
+    printf("    mini-sandbox -l c -f test.c -e test -i in.txt -o out.txt\n");
+    printf("    mini-sandbox -l java -f Main.java -e Main -i in.txt -o out.txt\n");
+    printf("    mini-sandbox -p -l java -f Main.java -e Main -d main -i in.txt -o out.txt\n");
+    printf("\n");
 }
 
 void delete_cli_arg(struct cli_arg_t *arg) {

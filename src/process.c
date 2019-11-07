@@ -99,17 +99,21 @@ void do_execute(void *arg) {
     if (access(exec->in, F_OK) != -1) {
 
         /* redirect I/O for child process */
-        int fd0 = open(exec->in, O_RDONLY);
-        dup2(fd0, 0);
-        close(fd0);
-        int fd1 = open(exec->out, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-        dup2(fd1, 1);
-        close(fd1);
-        int fd2 = (exec->err && strcmp(exec->err, "") != 0)
-                  ? open(exec->err, O_WRONLY, 0644)
-                  : open(DEV_NULL, O_WRONLY, 0644);
-        dup2(fd2, 2);
-        close(fd2);
+        if (exec->in && strcmp(exec->in, "") != 0) {
+            int fd = open(exec->in, O_RDONLY);
+            dup2(fd, 0);
+            close(fd);
+        }
+        if (exec->out && strcmp(exec->out, "") != 0) {
+            int fd = open(exec->out, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+            dup2(fd, 1);
+            close(fd);
+        }
+        int fd = (exec->err && strcmp(exec->err, "") != 0)
+                 ? open(exec->err, O_WRONLY, 0644)
+                 : open(DEV_NULL, O_WRONLY, 0644);
+        dup2(fd, 2);
+        close(fd);
 
         seccomp_rules_add(exec->type);
         switch (exec->type) {

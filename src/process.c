@@ -87,9 +87,10 @@ void c_compile(void *arg) {
 
 void j_compile(void *arg) {
     struct j_comp_t *comp = (struct j_comp_t *) arg;
-    if (comp->dir)
-        execlp(JAVAC, JAVAC, JAVAC_DIR, comp->dir, comp->src.file);
-    else
+    if (comp->dir && strcmp(comp->dir, "") != 0) {
+        mkdir(comp->dir, 0755);
+        execlp(JAVAC, JAVAC, JAVAC_DIR, comp->dir, comp->src.file, NULL);
+    } else
         execlp(JAVAC, JAVAC, comp->src.file, NULL);
 }
 
@@ -131,8 +132,9 @@ void c_execute(void *arg) {
 
 void j_execute(void *arg) {
     struct j_exec_t *exec = (struct j_exec_t *) arg;
-    if (exec->dir)
-        execlp(JAVA, JAVA, JAVA_CP, exec->dir, exec->class, NULL);
-    else
+    if (exec->dir && strcmp(exec->dir, "") != 0) {
+        if (access(exec->dir, F_OK) != -1)
+            execlp(JAVA, JAVA, JAVA_CP, exec->dir, exec->class, NULL);
+    } else
         execlp(JAVA, JAVA, exec->class, NULL);
 }

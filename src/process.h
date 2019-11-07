@@ -81,6 +81,9 @@ struct j_exec_t {
     char *dir;   /* subdirectory for Java class file, if exists */
 };
 
+/* get default tlimit_t */
+struct tlimit_t tlimit_default();
+
 /* Template for compiling or executing with child processes */
 bool procedure(struct tlimit_t *limit, struct tusage_t *usage,
                void (*func)(void *), void *arg);

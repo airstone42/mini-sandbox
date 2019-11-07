@@ -10,6 +10,11 @@ const char *CC_OUT = "-o";
 const char *JAVAC_DIR = "-d";
 const char *JAVA_CP = "-classpath";
 
+struct tlimit_t tlimit_default() {
+    struct tlimit_t result = {1000, 20};
+    return result;
+}
+
 bool procedure(struct tlimit_t *limit, struct tusage_t *usage,
                void (*func)(void *), void *arg) {
     int status = 0;

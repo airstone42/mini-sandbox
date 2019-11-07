@@ -3,6 +3,6 @@ project(mini_sandbox C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(sandbox src/main.c src/jail.c src/jail.h src/process.c src/process.h)
+add_executable(sandbox src/main.c src/jail.c src/jail.h src/process.c src/process.h src/cli.c src/cli.h)
 
 target_link_libraries(sandbox dl seccomp)

@@ -105,8 +105,9 @@ void do_execute(void *arg) {
         int fd1 = open(exec->out, O_WRONLY | O_CREAT | O_TRUNC, 0644);
         dup2(fd1, 1);
         close(fd1);
-        int fd2 = (exec->err) ? open(exec->err, O_WRONLY, 0644)
-                              : open(DEV_NULL, O_WRONLY, 0644);
+        int fd2 = (exec->err && strcmp(exec->err, "") != 0)
+                  ? open(exec->err, O_WRONLY, 0644)
+                  : open(DEV_NULL, O_WRONLY, 0644);
         dup2(fd2, 2);
         close(fd2);
 

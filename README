@@ -1,0 +1,18 @@
+mini-sandbox
+
+Usage:
+    -c                compile only
+    -r                execute only;
+    -p                compile and run
+    -l lang           set language, c, c++ or java
+    -f source         source code filename
+    -e executable     executable file filename or java class filename
+    -d directory      java classpath argument
+    -i input          input file redirection
+    -o output         output file redirection
+    -x error          stderr redirection
+
+Examples:
+    mini-sandbox -l c -f test.c -e test -i in.txt -o out.txt
+    mini-sandbox -l java -f Main.java -e Main -i in.txt -o out.txt
+    mini-sandbox -p -l java -f Main.java -e Main -d main -i in.txt -o out.txt

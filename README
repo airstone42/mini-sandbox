@@ -2,7 +2,7 @@ mini-sandbox
 
 Usage:
     -c                compile only
-    -r                execute only;
+    -r                execute only
     -p                compile and run
     -l lang           set language, c, c++ or java
     -f source         source code filename
